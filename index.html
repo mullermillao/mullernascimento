@@ -330,7 +330,13 @@ section { padding-top: 0; }
   .foto-muller { margin-top: 64px; }
   .amo { margin-top: 64px; }
   .habilidades-titulo { margin-top: 48px; }
-  .skills-row { font-size: 14px; gap: 16px; white-space: normal; }
+  .hero, .trajetoria, .atualmente { padding-bottom: 64px; }
+  .marca, .familia { margin-top: 64px; gap: 64px; }
+  .skills { display: block; line-height: 2; }
+  .skills-row { display: contents; font-size: 14px; }
+  .skills-row span { white-space: nowrap; }
+  .skills-row span::after { content: "\25CF"; color: var(--preto); font-size: 9px; margin: 0 12px; vertical-align: 2px; }
+  .skills-row:last-child span:last-child::after { content: none; margin: 0; }
   .exp { gap: 16px; }
   .exp-data { min-width: 86px; font-size: 13px; }
   .exp-cargo { font-size: 17px; }
