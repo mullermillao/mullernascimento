@@ -326,6 +326,25 @@ section { padding-top: 0; }
   color: #ffffff; text-decoration: none;
 }
 
+/* estados dos itens (Default/Hover/Pressed) + submenu Cases expansivel (padrao Collapsible, icone Lucide chevron-down) */
+.menu-sheet-links a:hover, .menu-cases:hover, .menu-cases:hover > span { color: var(--cinza-claro); }
+.menu-sheet-links a:active, .menu-cases:active, .menu-cases:active > span { color: var(--cinza); }
+.menu-cases {
+  display: flex; align-items: center; justify-content: space-between;
+  width: 100%;
+  background: none; border: 0; padding: 0;
+  font-family: inherit; font-size: 24px; line-height: 56px;
+  color: #ffffff; cursor: pointer;
+}
+.menu-cases .menu-cases-chevron { transition: transform .25s ease; flex: none; }
+.menu-cases[aria-expanded="true"] .menu-cases-chevron { transform: rotate(180deg); }
+.menu-cases-sub { display: none; flex-direction: column; padding-left: 24px; }
+.menu-cases-sub.aberto { display: flex; }
+.menu-cases-sub span {
+  font-size: 16px; line-height: 40px;
+  color: var(--cinza-claro);
+}
+
 
 @media (max-width: 1200px) {
   :root { --margem: 48px; }
@@ -424,7 +443,15 @@ section { padding-top: 0; }
     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
   </button>
   <nav class="menu-sheet-links">
-    <span>Cases</span>
+    <button class="menu-cases" id="menu-cases" aria-expanded="false" aria-controls="menu-cases-sub">
+      <span>Cases</span>
+      <svg class="menu-cases-chevron" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+    </button>
+    <div class="menu-cases-sub" id="menu-cases-sub">
+      <span>Em breve</span>
+      <span>Em breve</span>
+      <span>Em breve</span>
+    </div>
     <a href="https://www.linkedin.com/in/mullernascimento" target="_blank" rel="noopener">LinkedIn</a>
     <a href="https://mullermillao.medium.com/" target="_blank" rel="noopener">Medium</a>
     <a href="https://www.instagram.com/mullermillao" target="_blank" rel="noopener">Instagram</a>
@@ -598,8 +625,17 @@ updateRotation();
   closeBtn.addEventListener('click', fechar);
   overlay.addEventListener('click', fechar);
   sheet.querySelectorAll('a').forEach(function (a) { a.addEventListener('click', fechar); });
+  var casesBtn = document.getElementById('menu-cases');
+  var casesSub = document.getElementById('menu-cases-sub');
+  if (casesBtn && casesSub) {
+    casesBtn.addEventListener('click', function () {
+      var aberto = casesSub.classList.toggle('aberto');
+      casesBtn.setAttribute('aria-expanded', aberto ? 'true' : 'false');
+    });
+  }
   document.addEventListener('keydown', function (e) { if (e.key === 'Escape') fechar(); });
 })();
 </script>
 </body>
        </html>
+
