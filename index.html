@@ -320,8 +320,14 @@ section { padding-top: 0; }
 }
 @media (max-width: 600px) {
   :root { --margem: 24px; }
-  .menu { height: 88px; }
-  .menu-inner { flex-wrap: wrap; gap: 12px 20px; justify-content: flex-start; }
+  .menu { height: 88px; padding: 0 var(--margem); justify-content: flex-end; }
+  .menu-inner { display: none; }
+  .menu-toggle {
+    display: flex; align-items: center; justify-content: center;
+    width: 44px; height: 44px;
+    background: #ffffff; border: 1px solid #e5e5e5; border-radius: 10px;
+    color: var(--preto); cursor: pointer;
+  }
   .menu-item { font-size: 14px; }
   main { padding-top: 88px; }
   .textao, .citacao .textao { font-size: 34px; line-height: 42px; letter-spacing: -.025em; }
@@ -333,7 +339,7 @@ section { padding-top: 0; }
   .hero, .trajetoria, .atualmente { padding-bottom: 64px; }
   .marca, .familia { margin-top: 64px; gap: 64px; }
   .skills { display: block; line-height: 2; }
-  .skills-row { display: contents; font-size: 14px; }
+  .skills-row { display: inline; font-size: 14px; white-space: normal; }
   .skills-row span { white-space: nowrap; }
   .skills-row span::after { content: "\25CF"; color: var(--preto); font-size: 9px; margin: 0 12px; vertical-align: 2px; }
   .skills-row:last-child span:last-child::after { content: none; margin: 0; }
@@ -351,9 +357,45 @@ section { padding-top: 0; }
   .footer-email { font-size: 18px; }
   .footer-links span, .footer-links a { font-size: 18px; line-height: 40px; }
 }
+/* ---------- menu mobile (hamburguer) ---------- */
+
+.menu-toggle { display: none; }
+.menu-overlay {
+  position: fixed; inset: 0;
+  background: rgba(0,0,0,.4);
+  opacity: 0; pointer-events: none;
+  transition: opacity .25s ease;
+  z-index: 150;
+}
+.menu-overlay.aberto { opacity: 1; pointer-events: auto; }
+.menu-sheet {
+  position: fixed; top: 0; right: 0; bottom: 0;
+  width: 280px; max-width: 80vw;
+  background: #000000;
+  z-index: 200;
+  transform: translateX(100%);
+  transition: transform .25s ease;
+  padding: 22px 24px;
+  display: flex; flex-direction: column;
+}
+.menu-sheet.aberto { transform: translateX(0); }
+.menu-close {
+  align-self: flex-end;
+  width: 44px; height: 44px;
+  display: flex; align-items: center; justify-content: center;
+  background: none; border: 1px solid rgba(255,255,255,.25); border-radius: 10px;
+  color: #ffffff; cursor: pointer;
+}
+.menu-sheet-links { margin-top: 40px; display: flex; flex-direction: column; }
+.menu-sheet-links span, .menu-sheet-links a {
+  font-size: 24px; line-height: 56px;
+  color: #ffffff; text-decoration: none;
+}
+
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   .reveal { opacity: 1; transform: none; transition: none; }
+  .menu-overlay, .menu-sheet { transition: none; }
 }
 </style>
 </head>
@@ -368,7 +410,24 @@ section { padding-top: 0; }
     <a class="menu-item" href="https://github.com/mullermillao" target="_blank" rel="noopener">GitHub</a>
     <a class="menu-item" href="https://www.figma.com/@muller_millao" target="_blank" rel="noopener">Figma</a>
   </nav>
+  <button class="menu-toggle" id="menu-toggle" aria-label="Abrir menu" aria-expanded="false" aria-controls="menu-sheet">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="4" x2="20" y1="6" y2="6"/><line x1="4" x2="20" y1="12" y2="12"/><line x1="4" x2="20" y1="18" y2="18"/></svg>
+  </button>
 </header>
+<div class="menu-overlay" id="menu-overlay"></div>
+<aside class="menu-sheet" id="menu-sheet" aria-hidden="true">
+  <button class="menu-close" id="menu-close" aria-label="Fechar menu">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+  </button>
+  <nav class="menu-sheet-links">
+    <span>Cases</span>
+    <a href="https://www.linkedin.com/in/mullernascimento" target="_blank" rel="noopener">LinkedIn</a>
+    <a href="https://mullermillao.medium.com/" target="_blank" rel="noopener">Medium</a>
+    <a href="https://www.instagram.com/mullermillao" target="_blank" rel="noopener">Instagram</a>
+    <a href="https://github.com/mullermillao" target="_blank" rel="noopener">GitHub</a>
+    <a href="https://www.figma.com/@muller_millao" target="_blank" rel="noopener">Figma</a>
+  </nav>
+</aside>
 
 <main>
 
@@ -500,6 +559,32 @@ window.addEventListener('scroll', () => {
   if (!framePending) { framePending = true; requestAnimationFrame(updateRotation); }
 }, {passive: true});
 updateRotation();
+
+// menu mobile: abre/fecha o painel lateral
+(function () {
+  var toggle = document.getElementById('menu-toggle');
+  var sheet = document.getElementById('menu-sheet');
+  var overlay = document.getElementById('menu-overlay');
+  var closeBtn = document.getElementById('menu-close');
+  if (!toggle || !sheet || !overlay || !closeBtn) return;
+  function abrir() {
+    sheet.classList.add('aberto');
+    overlay.classList.add('aberto');
+    toggle.setAttribute('aria-expanded', 'true');
+    sheet.setAttribute('aria-hidden', 'false');
+  }
+  function fechar() {
+    sheet.classList.remove('aberto');
+    overlay.classList.remove('aberto');
+    toggle.setAttribute('aria-expanded', 'false');
+    sheet.setAttribute('aria-hidden', 'true');
+  }
+  toggle.addEventListener('click', abrir);
+  closeBtn.addEventListener('click', fechar);
+  overlay.addEventListener('click', fechar);
+  sheet.querySelectorAll('a').forEach(function (a) { a.addEventListener('click', fechar); });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape') fechar(); });
+})();
 </script>
 </body>
        </html>
