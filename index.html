@@ -346,6 +346,42 @@ section { padding-top: 0; }
 }
 
 
+/* ---------- cases desktop: painel preto sobe de baixo ---------- */
+.cases-overlay {
+  position: fixed; inset: 0;
+  background: rgba(0,0,0,.4);
+  opacity: 0; pointer-events: none;
+  transition: opacity .25s ease;
+  z-index: 150;
+}
+.cases-overlay.aberto { opacity: 1; pointer-events: auto; }
+.cases-panel {
+  position: fixed; left: 0; right: 0; bottom: 0;
+  background: #000000;
+  z-index: 200;
+  transform: translateY(100%);
+  transition: transform .25s ease;
+  padding: 22px 0 40px;
+}
+.cases-panel.aberto { transform: translateY(0); }
+.cases-panel-inner {
+  width: 100%; max-width: var(--largura);
+  margin: 0 auto; padding: 0 var(--margem);
+  display: flex; flex-direction: column;
+}
+.cases-close { align-self: flex-end; }
+.cases-panel-links { margin-top: 40px; display: flex; flex-direction: column; }
+.cases-panel-links span {
+  font-size: 24px; line-height: 56px;
+  color: #ffffff;
+}
+button.menu-item {
+  background: none; border: 0; padding: 0;
+  font-family: inherit; cursor: pointer;
+}
+button.menu-item:hover { color: var(--cinza); }
+button.menu-item:active { color: var(--cinza-claro); }
+
 @media (min-width: 601px) {
   .menu-overlay, .menu-sheet { display: none; }
 }
@@ -381,6 +417,7 @@ section { padding-top: 0; }
 }
 @media (max-width: 600px) {
   :root { --margem: 24px; }
+  .cases-overlay, .cases-panel { display: none; }
   .menu { height: 64px; padding: 0 var(--margem); justify-content: flex-end; }
   .menu-inner { display: none; }
   .menu-toggle {
@@ -422,7 +459,7 @@ section { padding-top: 0; }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   .reveal { opacity: 1; transform: none; transition: none; }
-  .menu-overlay, .menu-sheet { transition: none; }
+  .menu-overlay, .menu-sheet, .cases-overlay, .cases-panel { transition: none; }
 }
 </style>
 </head>
@@ -430,7 +467,7 @@ section { padding-top: 0; }
 
 <header class="menu" id="menu">
   <nav class="menu-inner">
-    <span class="menu-item">Cases</span>
+    <button class="menu-item" id="menu-cases-desktop" aria-expanded="false" aria-controls="cases-panel">Cases</button>
     <a class="menu-item" href="https://www.linkedin.com/in/mullernascimento" target="_blank" rel="noopener">LinkedIn</a>
     <a class="menu-item" href="https://mullermillao.medium.com/" target="_blank" rel="noopener">Medium</a>
     <a class="menu-item" href="https://www.instagram.com/mullermillao" target="_blank" rel="noopener">Instagram</a>
@@ -462,6 +499,20 @@ section { padding-top: 0; }
     <a href="https://github.com/mullermillao" target="_blank" rel="noopener">GitHub</a>
     <a href="https://www.figma.com/@muller_millao" target="_blank" rel="noopener">Figma</a>
   </nav>
+</aside>
+
+<div class="cases-overlay" id="cases-overlay"></div>
+<aside class="cases-panel" id="cases-panel" aria-hidden="true" aria-label="Cases">
+  <div class="cases-panel-inner">
+    <button class="menu-close cases-close" id="cases-close" aria-label="Fechar cases">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+    </button>
+    <nav class="cases-panel-links">
+      <span>Em breve</span>
+      <span>Em breve</span>
+      <span>Em breve</span>
+    </nav>
+  </div>
 </aside>
 
 <main>
@@ -637,6 +688,31 @@ updateRotation();
       casesBtn.setAttribute('aria-expanded', aberto ? 'true' : 'false');
     });
   }
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape') fechar(); });
+})();
+
+// cases desktop: painel preto sobe de baixo; fecha descendo (X, clique fora ou Esc)
+(function () {
+  var abrirBtn = document.getElementById('menu-cases-desktop');
+  var panel = document.getElementById('cases-panel');
+  var overlay = document.getElementById('cases-overlay');
+  var closeBtn = document.getElementById('cases-close');
+  if (!abrirBtn || !panel || !overlay || !closeBtn) return;
+  function abrir() {
+    panel.classList.add('aberto');
+    overlay.classList.add('aberto');
+    abrirBtn.setAttribute('aria-expanded', 'true');
+    panel.setAttribute('aria-hidden', 'false');
+  }
+  function fechar() {
+    panel.classList.remove('aberto');
+    overlay.classList.remove('aberto');
+    abrirBtn.setAttribute('aria-expanded', 'false');
+    panel.setAttribute('aria-hidden', 'true');
+  }
+  abrirBtn.addEventListener('click', abrir);
+  closeBtn.addEventListener('click', fechar);
+  overlay.addEventListener('click', fechar);
   document.addEventListener('keydown', function (e) { if (e.key === 'Escape') fechar(); });
 })();
 </script>
