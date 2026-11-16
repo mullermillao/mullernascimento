@@ -465,6 +465,13 @@ button.menu-item:active { color: var(--cinza-claro); }
   .menu-overlay, .menu-sheet, .cases-overlay, .cases-panel { transition: none; }
 }
 
+/* Mantém foto e citação dentro da grade desktop, sem alterar o desenho de 1440px. */
+@media (min-width: 1201px) {
+  .familia { width: 100%; }
+  .foto-familia { flex: 0 0 405px; }
+  .citacao { flex: 1; min-width: 0; }
+}
+
 /* Review aprovada: somente desktop; mobile mantém seu layout. */
 @media (min-width: 601px) {
   .menu-item, .footer-links a {
@@ -763,4 +770,3 @@ updateRotation();
 </script>
 </body>
        </html>
-
