@@ -611,6 +611,22 @@ main.case { max-width: none; margin: 0; padding: 149px 0 0; }
   .s-video .video-legenda { margin: 0 24px; font-size: 18px; line-height: 27px; }
   .s-video .video { max-width: none; }
 }
+
+/* rótulos acima dos textões */
+.rotulo { font-size: 24px; line-height: 1.4; font-weight: 400; text-transform: uppercase; color: #808080; margin: 0; }
+.s-azul .rotulo { color: #333333; }
+.s-preto .rotulo { color: #cccccc; }
+@media (max-width: 600px) {
+  .rotulo { font-size: 18px; line-height: 27px; }
+  /* respiro mobile: 96px entre borda da seção e texto (referência do footer), topo e base */
+  .s > .s-in { padding-top: 96px; padding-bottom: 96px; }
+  .s-topo, .s-base, .s-texto { min-height: 0; }
+  .s-topo > .s-in, .s-base > .s-in, .s-texto > .s-in { padding-top: 96px; padding-bottom: 96px; justify-content: flex-start; }
+  .s-capa > .s-in { padding-top: 96px; padding-bottom: 96px; }
+  .s-solucao > .s-in { padding-top: 96px; padding-bottom: 96px; }
+  .s-video > .s-in { padding-top: 96px; padding-bottom: 96px; }
+  .footer { padding-top: 96px; padding-bottom: 96px; }
+}
 </style>
 </head>
 <body>
@@ -684,6 +700,7 @@ main.case { max-width: none; margin: 0; padding: 149px 0 0; }
   <section class="s s-branco s-topo" data-tema="branco">
     <div class="s-in reveal">
       <div class="col">
+        <p class="rotulo">PROBLEMA</p>
         <h2 class="textao">Designers surdos relataram dificuldade para acompanhar os cursos da Meiuca.</h2>
       </div>
     </div>
@@ -693,8 +710,7 @@ main.case { max-width: none; margin: 0; padding: 149px 0 0; }
     <div class="s-in reveal">
       <div class="col">
         <h2 class="textao">Figma. Design system. Design ops. Token.</h2>
-        <p class="apoio">Sem sinais específicos nesse contexto, os intérpretes precisavam soletrar.</p>
-        <p class="apoio">Isso prejudicava a compreensão e o ritmo da interpretação.</p>
+        <p class="apoio">Sem sinais específicos nesse contexto, os intérpretes precisavam soletrar. Isso prejudicava a compreensão e o ritmo da interpretação.</p>
       </div>
     </div>
   </section>
@@ -702,6 +718,7 @@ main.case { max-width: none; margin: 0; padding: 149px 0 0; }
   <section class="s s-azul s-solucao" data-tema="azul">
     <div class="s-in">
       <div class="col reveal">
+        <p class="rotulo">SOLUÇÃO</p>
         <h2 class="textao titulo-solucao">Glossário de Design e Tecnologia para pessoas surdas</h2>
         <p class="apoio">Uma iniciativa para tornar o mercado de tecnologia mais acessível e formar mais especialistas em design system.</p>
         <img class="logos-case" src="data:image/png;base64,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" width="257" height="51" alt="Meiuca e FESAI" loading="lazy">
@@ -713,16 +730,10 @@ main.case { max-width: none; margin: 0; padding: 149px 0 0; }
   <section class="s s-preto s-texto" data-tema="preto">
     <div class="s-in reveal">
       <div class="col">
+        <p class="rotulo">RESULTADO</p>
         <h2 class="textao">Mais de 70 Sinais em libras foram criados em parceria com a FESAI.</h2>
         <p class="apoio">Gravamos 100% das aulas com interpretação e geramos mais de 200 bolsas para a comunidade surda, nos mais diferentes níveis de senioridade.</p>
       </div>
-    </div>
-  </section>
-
-  <section class="s s-azul s-video" data-tema="azul">
-    <div class="s-in">
-      <div class="video"><iframe src="https://www.youtube-nocookie.com/embed/fyfZaCgHn_Y?rel=0&amp;iv_load_policy=3&amp;playsinline=1" title="Design System Specialist - Aula Grátis (Com libras)" loading="lazy" allow="accelerometer; encrypted-media; picture-in-picture; fullscreen" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>
-      <a class="video-legenda" href="https://youtu.be/fyfZaCgHn_Y" target="_blank" rel="noopener">YouTube · Aula grátis com Libras.</a>
     </div>
   </section>
 
@@ -736,7 +747,8 @@ main.case { max-width: none; margin: 0; padding: 149px 0 0; }
   <section class="s s-branco s-texto" data-tema="branco">
     <div class="s-in reveal">
       <div class="col">
-        <h2 class="textao">Anos depois os sinais criados seguem sendo utilizados para interpretação de lives, meetups e cursos no Brasil inteiro.</h2>
+        <p class="rotulo">IMPACTO</p>
+        <h2 class="textao">Os sinais continuam sendo utilizados para interpretação de lives, meetups e cursos no Brasil inteiro.</h2>
         <p class="apoio">Difundidos entre intérpretes e profissionais surdos de produto e tecnologia em todo o Brasil.</p>
       </div>
     </div>
