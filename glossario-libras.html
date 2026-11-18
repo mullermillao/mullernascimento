@@ -842,7 +842,7 @@ document.querySelectorAll('.reveal').forEach((el) => observador.observe(el));
 // menu acompanha o fundo da seção que está sob ele
 (function () {
   var menu = document.getElementById('menu');
-  var secs = Array.prototype.slice.call(document.querySelectorAll('main.case > .s'));
+  var secs = Array.prototype.slice.call(document.querySelectorAll('main.case > .s, footer.footer'));
   if (!menu || !secs.length) return;
   var temas = {
     branco: ['#ffffff', '#171717', '#666666', '#e5e5e5'],
@@ -856,7 +856,7 @@ document.querySelectorAll('.reveal').forEach((el) => observador.observe(el));
     for (var i = 0; i < secs.length; i++) {
       var r = secs[i].getBoundingClientRect();
       var top = r.top + window.scrollY;
-      if (top <= y && y < top + r.height) { t = secs[i].getAttribute('data-tema'); break; }
+      if (top <= y && y < top + r.height) { t = secs[i].getAttribute('data-tema') || 'preto'; break; }
     }
     if (t === atual) return;
     atual = t;
@@ -868,6 +868,8 @@ document.querySelectorAll('.reveal').forEach((el) => observador.observe(el));
   }
   window.addEventListener('scroll', atualizar, { passive: true });
   window.addEventListener('resize', atualizar);
+  window.addEventListener('load', atualizar);
+  window.addEventListener('pageshow', atualizar);
   atualizar();
 })();
 </script>
