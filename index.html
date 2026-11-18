@@ -513,6 +513,11 @@ button.menu-item:active { color: var(--cinza-claro); }
 @media (prefers-reduced-motion: reduce) {
   .menu-item::after, .footer-links a::after { transition: none; }
 }
+.menu-cases-sub a, .cases-panel-links a { text-decoration: none; }
+.menu-cases-sub a { font-size: 16px; line-height: 40px; color: #fff; }
+.cases-panel-links a { font-size: 80px; line-height: 128px; letter-spacing: -0.02em; color: #fff; }
+.menu-cases-sub a:hover, .cases-panel-links a:hover { color: var(--cinza-claro); }
+@media (max-width: 1200px) { .cases-panel-links a { font-size: 56px; line-height: 80px; } }
 </style>
 </head>
 <body>
@@ -541,7 +546,7 @@ button.menu-item:active { color: var(--cinza-claro); }
       <svg class="menu-cases-chevron" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
     </button>
     <div class="menu-cases-sub" id="menu-cases-sub">
-      <span>Em breve</span>
+      <a href="/glossario-libras">Glossário acessível em Libras</a>
       <span>Em breve</span>
       <span>Em breve</span>
     </div>
@@ -560,7 +565,7 @@ button.menu-item:active { color: var(--cinza-claro); }
       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
     </button>
     <nav class="cases-panel-links">
-      <span>Em breve</span>
+      <a href="/glossario-libras">Glossário acessível em Libras</a>
       <span>Em breve</span>
       <span>Em breve</span>
     </nav>
