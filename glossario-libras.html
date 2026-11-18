@@ -627,6 +627,15 @@ main.case { max-width: none; margin: 0; padding: 149px 0 0; }
   .s-video > .s-in { padding-top: 96px; padding-bottom: 96px; }
   .footer { padding-top: 96px; padding-bottom: 96px; }
 }
+
+/* solução em larguras intermediárias: imagem escala e não cobre o título */
+@media (min-width: 1201px) and (max-width: 1439px) {
+  .s-solucao .col { max-width: calc(60vw - 120px); }
+  .s-solucao .titulo-solucao { max-width: min(640px, calc(60vw - 120px)); }
+  .arte { width: 40vw; height: auto; max-width: 750px; }
+  .arte img { height: auto; }
+  .arte::after { height: 100%; }
+}
 </style>
 </head>
 <body>
