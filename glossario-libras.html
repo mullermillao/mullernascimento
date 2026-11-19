@@ -635,6 +635,50 @@ main.case { max-width: none; margin: 0; padding: 149px 0 0; }
   .arte img { height: auto; }
   .arte::after { height: 100%; }
 }
+
+/* ---------- revisão 19-nov: respiro, segunda seção, menu, imagem à direita ---------- */
+/* respiro superior/inferior igual em todas as seções (96px), conteúdo centralizado na tela */
+.s > .s-in { padding-top: 96px; padding-bottom: 96px; }
+@media (min-width: 601px) {
+  .s-topo > .s-in, .s-base > .s-in, .s-texto > .s-in { justify-content: center; padding-top: 96px; padding-bottom: 96px; }
+}
+/* desktop: cada seção ocupa a área visível abaixo do menu (149px); cresce só se o conteúdo precisar */
+@media (min-width: 1201px) {
+  .s, .s-capa { min-height: calc(100svh - 149px); }
+  .s-capa > .s-in { padding: 96px 96px 96px 105px; }
+  .s-solucao > .s-in { padding: 96px 72px; justify-content: center; }
+  .s-video > .s-in { padding: 96px 72px; justify-content: center; }
+  .video { max-width: min(1296px, max(640px, calc((100svh - 149px - 240px) * 16 / 9))); }
+  .arte { top: 96px; }
+}
+@media (min-width: 1201px) and (max-height: 820px) {
+  .s-topo > .s-in, .s-base > .s-in, .s-texto > .s-in, .s-solucao > .s-in, .s-video > .s-in { padding-top: 48px; padding-bottom: 48px; }
+}
+@media (min-width: 1440px) {
+  .arte { top: 50%; transform: translateY(-50%); height: min(920px, max(480px, calc(100svh - 149px - 192px))); width: auto; aspect-ratio: 750 / 920; }
+}
+/* imagem do hero azul sempre colada na borda direita da tela */
+.s-solucao > .s-in { position: static; }
+@media (max-width: 1200px) {
+  .arte { align-self: flex-end; margin-right: -48px; width: calc(100% + 48px); max-width: 648px; }
+}
+@media (max-width: 600px) {
+  .arte { margin-right: -24px; width: calc(100% + 24px); max-width: none; }
+}
+/* menu hambúrguer a partir de 984px: abaixo disso o espaço entre links fica menor que 48px */
+@media (min-width: 601px) and (max-width: 984px) {
+  .menu { height: 64px; padding: 0 var(--margem); justify-content: flex-end; }
+  .menu-inner { display: none; }
+  .menu-toggle {
+    display: flex; align-items: center; justify-content: center;
+    width: 44px; height: 44px;
+    border: 1px solid var(--menu-borda, #e5e5e5); border-radius: 10px; cursor: pointer;
+  }
+  .menu-overlay { display: block; }
+  .menu-sheet { display: flex; }
+  .cases-overlay, .cases-panel { display: none; }
+  main.case { padding-top: 64px; }
+}
 </style>
 </head>
 <body>
