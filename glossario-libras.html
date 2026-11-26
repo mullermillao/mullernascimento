@@ -794,7 +794,20 @@ main.case { max-width: none; margin: 0; padding: 149px 0 0; }
   <section class="s s-preto s-video" data-tema="preto">
     <div class="s-in">
       <div class="video"><iframe src="https://www.youtube-nocookie.com/embed/qWB6P00vTSI?rel=0&amp;iv_load_policy=3&amp;playsinline=1" title="Design System Specialist - Sinais em Libras que vamos utilizar" loading="lazy" allow="accelerometer; encrypted-media; picture-in-picture; fullscreen" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>
-      <p class="video-legenda">YouTube · Sinais em Libras do curso.</p>
+<style>
+/* revisao: desktop, mesmo respiro da Co-aceleracao (mobile nao muda) */
+@media (min-width: 601px) {
+  .s > .s-in { padding-top: 96px; padding-bottom: 96px; }
+  .s-topo > .s-in, .s-base > .s-in, .s-texto > .s-in { justify-content: center; padding-top: 96px; padding-bottom: 96px; }
+}
+@media (min-width: 1201px) {
+  .s, .s-capa { min-height: calc(100svh - 149px); }
+  .s-capa > .s-in { padding: 96px 96px 96px 105px; gap: 112px; justify-content: flex-start; }
+  .s-solucao > .s-in { padding: 96px 72px; justify-content: center; }
+  .s-video { min-height: calc(100svh - 149px); }
+  .s-video > .s-in { padding: 96px 72px; justify-content: center; }
+}
+</style>
     </div>
   </section>
 
@@ -918,7 +931,7 @@ document.querySelectorAll('.reveal').forEach((el) => observador.observe(el));
   };
   var atual = '';
   function atualizar() {
-    var y = menu.offsetHeight / 2 + window.scrollY, t = 'branco';
+    var y = menu.offsetHeight / 2 + window.scrollY, t = secs[0].getAttribute('data-tema') || 'branco';
     for (var i = 0; i < secs.length; i++) {
       var r = secs[i].getBoundingClientRect();
       var top = r.top + window.scrollY;
