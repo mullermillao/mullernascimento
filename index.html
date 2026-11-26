@@ -678,7 +678,7 @@ button.menu-item:active { color: var(--cinza-claro); }
   if (!menu || !footer) return;
   function atualizar() {
     var r = footer.getBoundingClientRect();
-    menu.classList.toggle("sobre-footer", r.top <= menu.offsetHeight / 2 && r.bottom > 0);
+    menu.classList.toggle("sobre-footer", r.top <= menu.offsetHeight && r.bottom > 0);
   }
   window.addEventListener("scroll", atualizar, { passive: true });
   window.addEventListener("resize", atualizar);
