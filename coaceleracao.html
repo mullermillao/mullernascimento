@@ -690,7 +690,7 @@ main.case { padding-top: 0; }
 .co-capa { min-height: 1061px; background: #000; color: #fff; }
 .co-capa > .s-in { padding: 183px 203px 128px 105px; gap: 112px; justify-content: flex-start; }
 .co-capa .capa-titulo { font-family: 'Archivo', 'Inter', sans-serif; font-size: 140px; line-height: 140px; font-weight: 700; letter-spacing: -0.035em; max-width: 1004px; color: #fff; }
-.co-capa .co-star { position: absolute; left: 960px; top: 280px; width: 180px; height: 180px; }
+@keyframes co-star-spin { to { transform: rotate(360deg); } } .co-capa .co-star { animation: co-star-spin 24s linear infinite; will-change: transform; } .co-capa .co-star { position: absolute; left: 960px; top: 280px; width: 180px; height: 180px; }
 .co-capa .capa-meta { grid-template-columns: 220px 280px 200px 140px 1fr; margin-top: 0; }
 .co-capa .capa-meta dt { color: #fff; opacity: .6; }
 .co-problema > .s-in { padding: 96px 74px; }
