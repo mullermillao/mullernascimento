@@ -699,15 +699,18 @@ main.case { padding-top: 0; }
 .co-sol .col { width: min(768px, calc(100vw - 667px)); max-width: 100%; position: relative; z-index: 2; }
 .co-sol .col .textao { font-size: clamp(40px, calc((100vw - 667px) / 12), 80px); line-height: 1.2; }
 @media (min-width: 1440px) { .co-sol .col .textao { font-size: 80px; line-height: 96px; } }
-.co-sol .col .apoio { margin-top: 24px; color: #000; font-size: 24px; line-height: 32px; max-width: 700px; }
+.co-sol .col .apoio { margin-top: 24px; color: #000; font-size: 24px; line-height: 32px; max-width: min(700px, calc(100vw - var(--artw) - 90px)); }
 .co-logos-m { display: none; }
 .co-logos { display: block; width: 1292px; max-width: 100%; height: auto; position: relative; z-index: 2; }
-.co-arte { position: absolute; right: -24px; top: 0; width: 593px; height: 727px; background: var(--laranja); z-index: 1; }
-.co-card { position: absolute; width: 424px; height: 384px; background: #fff; border: 2px solid #000; border-radius: 4px; overflow: hidden; box-sizing: content-box; }
-.co-card.c3 { right: 24px; top: 226px; }
-.co-card.c2 { right: 34px; top: 236px; }
-.co-card.c1 { right: 44px; top: 246px; }
-.co-card.c3 img { display: block; width: 445px; max-width: none; height: auto; margin: -10px 0 0 -10px; }
+.co-sol { --artw: 663px; }
+@media (max-width: 1439px) { .co-sol { --artw: calc(6vw + 530px); } }
+.co-arte { position: absolute; right: 0; top: 0; width: var(--artw); height: auto; aspect-ratio: 663 / 727; background: none; z-index: 1; }
+.co-arte::before { content: ""; position: absolute; left: 14.178%; right: 0; top: 0; bottom: 0; background: var(--laranja); }
+.co-card { position: absolute; background: #fff; border: 2px solid #000; border-radius: 4px; overflow: hidden; box-sizing: border-box; width: 64.555%; height: auto; aspect-ratio: 428 / 388; }
+.co-card.c1 { left: 0; top: 33.838%; }
+.co-card.c2 { left: 1.508%; top: 32.462%; }
+.co-card.c3 { left: 3.017%; top: 31.087%; }
+.co-card.c3 img { display: block; width: 104.95%; max-width: none; height: auto; margin: -2.36% 0 0 -2.36%; }
 .co-sol { background: #fff; color: #000; }
 .co-sol .rotulo { color: #808080; }
 .co-impacto > .s-in { padding: 81px 72px 161px 74px; }
@@ -732,9 +735,8 @@ main.case { padding-top: 0; }
   .co-capa .capa-meta { grid-template-columns: 1fr 1fr; gap: 32px; }
   .co-problema > .s-in, .co-impacto > .s-in, .co-times > .s-in, .co-esp > .s-in { padding: 96px 48px; }
   .co-sol > .s-in { padding: 96px 48px; gap: 64px; }
-  .co-sol .col { width: 60%; }
-  .co-arte { width: 40vw; height: 480px; }
-  .co-card { transform: scale(.6); transform-origin: top right; }
+  .co-sol { --artw: 42vw; }
+  .co-sol .col { width: calc(58vw - 112px); }
   .co-quote { font-size: 56px; line-height: 64px; }
   .co-dep > .s-in, .co-dep2 > .s-in { padding: 96px 48px; }
   .co-esp-row { gap: 24px; }
@@ -787,7 +789,7 @@ main.case { padding-top: 0; }
 @media (max-width: 600px) {
   .co-esp .textao .nb { white-space: nowrap; }
   main.case .co-dep2 > .s-in { padding-top: 56px; }
-  .co-sol .col .apoio { font-size: 18px; line-height: 27px; }
+  .co-sol .col .apoio { font-size: 18px; line-height: 27px; max-width: none; }
   .co-sol .co-arte { position: relative; right: auto; top: auto; width: calc(100% + 24px); height: auto; aspect-ratio: 663 / 727; margin: 0 -24px 0 0; align-self: flex-end; background: none; }
   .co-sol .co-arte::before { content: ""; position: absolute; left: 14.178%; right: 0; top: 0; bottom: 0; background: var(--laranja); }
   .co-sol .co-card { transform: none; box-sizing: border-box; width: 64.555%; height: auto; aspect-ratio: 428 / 388; }
