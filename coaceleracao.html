@@ -696,8 +696,9 @@ main.case { padding-top: 0; }
 .co-problema > .s-in { padding: 96px 74px; }
 .co-problema .col { max-width: 1292px; }
 .co-sol > .s-in { padding: 81px 74px 62px 74px; justify-content: space-between; gap: 200px; }
-.co-sol .col { width: min(768px, 56vw); max-width: 100%; position: relative; z-index: 2; }
-.co-sol .col .textao { font-size: clamp(40px, 5.56vw, 80px); line-height: 1.2; }
+.co-sol .col { width: min(768px, calc(100vw - 667px)); max-width: 100%; position: relative; z-index: 2; }
+.co-sol .col .textao { font-size: clamp(40px, calc((100vw - 667px) / 12), 80px); line-height: 1.2; }
+@media (min-width: 1440px) { .co-sol .col .textao { font-size: 80px; line-height: 96px; } }
 .co-sol .col .apoio { margin-top: 24px; color: #000; font-size: 24px; line-height: 32px; max-width: 700px; }
 .co-logos-m { display: none; }
 .co-logos { display: block; width: 1292px; max-width: 100%; height: auto; position: relative; z-index: 2; }
@@ -714,8 +715,8 @@ main.case { padding-top: 0; }
 .co-times .apoio { color: #b3b3b3; max-width: 704px; margin: 0; }
 .co-esp > .s-in { padding: 81px 72px 117px 74px; gap: 72px; justify-content: space-between; }
 .co-esp-row { display: flex; gap: 44px; align-items: flex-start; flex-wrap: wrap; }
-.co-esp-row figure { width: 200px; margin: 0; text-align: center; }
-.co-esp-row img { display: block; width: 200px; height: 200px; border-radius: 50%; object-fit: cover; }
+.co-esp-row figure { width: min(200px, calc((100% - 176px) / 5)); margin: 0; text-align: center; }
+.co-esp-row img { display: block; width: 100%; height: auto; aspect-ratio: 1; border-radius: 50%; object-fit: cover; }
 .co-esp-row figcaption { margin-top: 16px; font-size: 16px; line-height: 24px; color: #fff; }
 .co-dep > .s-in { padding: 119px 103px; gap: 48px; justify-content: center; }
 .co-dep2 > .s-in { padding: 84px 99px 174px 99px; }
