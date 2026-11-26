@@ -931,7 +931,7 @@ document.querySelectorAll('.reveal').forEach((el) => observador.observe(el));
   };
   var atual = '';
   function atualizar() {
-    var y = menu.offsetHeight / 2 + window.scrollY, t = secs[0].getAttribute('data-tema') || 'branco';
+    var y = menu.offsetHeight / 2 + window.scrollY, t = (window.innerWidth > 600 ? secs[0].getAttribute('data-tema') : '') || 'branco';
     for (var i = 0; i < secs.length; i++) {
       var r = secs[i].getBoundingClientRect();
       var top = r.top + window.scrollY;
