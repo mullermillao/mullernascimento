@@ -696,8 +696,8 @@ main.case { padding-top: 0; }
 .co-problema > .s-in { padding: 96px 74px; }
 .co-problema .col { max-width: 1292px; }
 .co-sol > .s-in { padding: 81px 74px 62px 74px; justify-content: space-between; gap: 200px; }
-.co-sol .col { width: 768px; max-width: 100%; position: relative; z-index: 2; }
-.co-sol .col .textao { font-size: 48px; line-height: 56px; }
+.co-sol .col { width: min(768px, 56vw); max-width: 100%; position: relative; z-index: 2; }
+.co-sol .col .textao { font-size: clamp(40px, 5.56vw, 80px); line-height: 1.2; }
 .co-sol .col .apoio { margin-top: 24px; color: #000; font-size: 24px; line-height: 32px; max-width: 700px; }
 .co-logos { display: block; width: 1292px; max-width: 100%; height: auto; position: relative; z-index: 2; }
 .co-arte { position: absolute; right: -24px; top: 0; width: 593px; height: 727px; background: var(--laranja); z-index: 1; }
@@ -723,6 +723,8 @@ main.case { padding-top: 0; }
 .co-autor img { width: 48px; height: 48px; border-radius: 50%; object-fit: cover; display: block; }
 .co-autor strong { display: block; font-weight: 400; font-size: 24px; line-height: 28px; }
 .co-autor span { display: block; font-size: 16px; line-height: 20px; }
+@media (min-width: 1201px) and (max-width: 1439px) { .co-arte { transform: scale(.72); transform-origin: top right; } }
+@media (min-width: 1440px) and (max-width: 1599px) { .co-arte { transform: scale(.9); transform-origin: top right; } }
 @media (max-width: 1200px) {
   .co-capa > .s-in { padding: 160px 48px 96px; gap: 64px; }
   .co-capa .capa-titulo { font-size: 96px; line-height: 96px; }
@@ -749,7 +751,10 @@ main.case { padding-top: 0; }
   .co-sol .col { width: 100%; }
   .co-sol .col .textao { font-size: 34px; line-height: 42px; }
   .co-arte { position: relative; right: auto; width: calc(100% + 24px); margin: 0 -24px 0 0; align-self: flex-end; height: 300px; }
-  .co-card { transform: scale(.45); }
+  .co-card { transform: scale(.6); }
+  .co-card.c3 { right: 24px; top: 40px; }
+  .co-card.c2 { right: 36px; top: 52px; }
+  .co-card.c1 { right: 48px; top: 64px; }
   .co-esp-row figure { width: calc(50% - 12px); }
   .co-esp-row img { width: 100%; height: auto; aspect-ratio: 1; }
   .co-quote { font-size: 28px; line-height: 36px; }
