@@ -798,6 +798,22 @@ main.case { padding-top: 0; }
   .co-sol .co-card.c3 { left: 3.017%; right: auto; top: 31.087%; }
   .co-sol .co-card.c3 img { width: 104.95%; margin: -2.36% 0 0 -2.36%; }
 }
+/* ---------- 26-nov: Solução Co-aceleração (subtítulo padrão, caixa de texto mais estreita, imagem até a borda direita da tela) ---------- */
+.co-sol > .s-in { position: static; }
+.co-sol .col { gap: 10px; width: min(640px, calc(100vw - var(--artw) - 170px)); }
+.co-sol .col .textao { font-size: 64px; line-height: 72px; }
+.co-sol .col .apoio { margin: 0; max-width: 480px; font-size: 24px; line-height: 1.4; color: #000; }
+@media (min-width: 1440px) { .co-sol .col .textao { font-size: 80px; line-height: 96px; } }
+@media (min-width: 1201px) and (max-width: 1279px) { .co-sol .col .textao { font-size: 56px; line-height: 64px; } }
+@media (max-width: 1200px) { .co-sol .col { width: calc(58vw - 144px); } }
+@media (max-width: 600px) {
+  .co-sol .col { width: 100%; gap: 10px; }
+  .co-sol .col .textao { font-size: 34px; line-height: 42px; }
+  .co-sol .col .apoio { margin: 0; max-width: none; font-size: 18px; line-height: 27px; }
+}
+/* 26-nov: segundo depoimento branco com texto preto da identidade */
+.co-dep2 { background: #fff; color: var(--preto); }
+.co-dep2 .co-quote { color: var(--preto); }
 </style>
 </head>
 <body>
