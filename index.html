@@ -665,6 +665,28 @@ button.menu-item:active { color: var(--cinza-claro); }
     </div>
   </section>
 
+<style>
+.menu { transition: background .25s ease; }
+.menu.sobre-footer { background: #000000; }
+.menu.sobre-footer .menu-item { color: #ffffff; }
+.menu.sobre-footer a.menu-item:hover, .menu.sobre-footer button.menu-item:hover { color: #b3b3b3; }
+.menu.sobre-footer .menu-toggle { background: #000000; color: #ffffff; border-color: rgba(255,255,255,.25); }
+</style>
+<script>
+(function () {
+  var menu = document.getElementById("menu"), footer = document.querySelector("footer.footer");
+  if (!menu || !footer) return;
+  function atualizar() {
+    var r = footer.getBoundingClientRect();
+    menu.classList.toggle("sobre-footer", r.top <= menu.offsetHeight / 2 && r.bottom > 0);
+  }
+  window.addEventListener("scroll", atualizar, { passive: true });
+  window.addEventListener("resize", atualizar);
+  window.addEventListener("load", atualizar);
+  atualizar();
+})();
+</script>
+
 </main>
 
 <footer class="footer reveal">
