@@ -674,9 +674,10 @@ button.menu-item:active { color: var(--cinza-claro); }
 </style>
 <script>
 (function () {
-  var menu = document.getElementById("menu"), footer = document.querySelector("footer.footer");
-  if (!menu || !footer) return;
+  var menu = document.getElementById("menu");
+  if (!menu) return;
   function atualizar() {
+    var footer = document.querySelector("footer.footer"); if (!footer) return;
     var r = footer.getBoundingClientRect();
     menu.classList.toggle("sobre-footer", r.top <= menu.offsetHeight && r.bottom > 0);
   }
