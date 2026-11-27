@@ -967,5 +967,7 @@ document.querySelectorAll('.reveal').forEach((el) => observador.observe(el));
   atualizar();
 })();
 </script>
-<style>@media (min-width: 601px) { .s:not(.s-capa) > .s-in { padding-top: 163.2px; padding-bottom: 163.2px; } }</style></body>
+<style>@media (min-width: 601px) { .s:not(.s-capa) > .s-in { padding-top: 163.2px; padding-bottom: 163.2px; } }</style><style>/* hero desktop: mesma distancia titulo/infos do hero do Gymbro (238px a 1440x900, cresce com a altura da janela) */
+@media (min-width: 1201px) { .s-capa > .s-in { gap: max(238px, calc(100svh - 823px)); } }</style>
+</body>
          </html>

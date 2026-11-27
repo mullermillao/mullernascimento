@@ -1100,5 +1100,7 @@ document.querySelectorAll('.reveal').forEach((el) => observador.observe(el));
   atualizar();
 })();
 </script>
+<style>/* hero desktop: mesma distancia titulo/infos do hero do Gymbro (238px a 1440x900, cresce com a altura da janela) */
+@media (min-width: 1201px) { .co-capa > .s-in { gap: max(238px, calc(100svh - 823px)); } }</style>
 </body>
                 </html>
